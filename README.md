@@ -4,7 +4,7 @@ SoftDev Project 1: Stella Oh(PM), Winnie Huang, Constance Chen, Helena Williams
 ## Description:
 
 
-## Duties of Each Member
+## Duties of Each Member:
 Stella (PM) 
   - 
 
