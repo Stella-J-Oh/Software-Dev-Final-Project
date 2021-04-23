@@ -31,11 +31,6 @@ stellaO -- 2021-04-23 2:00
 Made a working flask app.
 ================================================================================
 stellaO -- 2021-04-23 5:48
-<<<<<<< HEAD
 Updated design doc database organization and front end map component. Made it more detailed.
 Pushed updated design doc and working flask app to repo.
 ================================================================================
-=======
-Updated database organization and front end map component.
-================================================================================
->>>>>>> 67a01d3a7745d187bfc1cc6f2b56d517fa8889d0
