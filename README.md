@@ -1,4 +1,4 @@
-# Team xoxo
+# Serotonin' It Up by Team xoxo
 
 ## Roster:
 - Stella Oh(PM)
