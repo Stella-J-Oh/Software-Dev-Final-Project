@@ -34,3 +34,11 @@ stellaO -- 2021-04-23 5:48
 Updated design doc database organization and front end map component. Made it more detailed.
 Pushed updated design doc and working flask app to repo.
 ================================================================================
+stellaO -- 2021-04-25 7:00
+Group met together to work on Flask App, create html templates, create login/register pages, 
+and page linkages. Laid out framework for website. Successfully linked Cat API to cat.html 
+and got images to load.
+================================================================================
+winnieH -- 2021-04-25 8:58
+Updated README.md file.
+================================================================================
