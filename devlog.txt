@@ -42,3 +42,14 @@ and got images to load.
 winnieH -- 2021-04-25 8:58
 Updated README.md file.
 ================================================================================
+stellaO -- 2021-04-26 8:03 
+Group came together to work on connecting rest of APIs and started working on DB setup.
+Encountered issue with adding info to columns in db and was stuck for like >30 minutes
+ONLY TO REALIZE EVERYTHING WAS NOT WORKING BECAUSE WE FORGOT THE DB.COMMIT() IN OUR 
+FUNCTION AHHHHHHHHHHHH *KEYBOARD SMASH* AHSDUIAHDIUSAHDISAUHDISAUHDSAIUHDIUSAHDISAUHDSAD
+We are in pain... We wish we had more time. Please. But lesson learned!
+Next time we need to work on:
+- Finishing Bookmark feature (SQLite DB)
+- Adding JS to text and buttons
+- Adding CSS/Bootstrap 
+================================================================================

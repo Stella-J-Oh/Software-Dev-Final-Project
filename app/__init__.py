@@ -16,8 +16,14 @@ db = sqlite3.connect("p0database.db")
 c = db.cursor()
 #c.execute("DROP TABLE IF EXISTS stories") #for changing columns
 #c.execute("DROP TABLE IF EXISTS users") #for changing columns
-c.execute("""CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text, contributions text)""")
-c.execute("""CREATE TABLE IF NOT EXISTS stories (id INTEGER PRIMARY KEY, title text, entire text, recent text, contributors text)""")
+c.execute("""CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)""")
+c.execute("""CREATE TABLE IF NOT EXISTS activities (activity text, type text, participants text)""")
+c.execute("""CREATE TABLE IF NOT EXISTS cats (cat text)""")
+c.execute("""CREATE TABLE IF NOT EXISTS dogs  (dog text)""")
+c.execute("""CREATE TABLE IF NOT EXISTS advices (advice text)""")
+c.execute("""CREATE TABLE IF NOT EXISTS bmActivities (user_id text, activity text, type text, participants text)""")
+c.execute("""CREATE TABLE IF NOT EXISTS bmCats (user_id text, cat text)""")
+c.execute("""CREATE TABLE IF NOT EXISTS bmDogs (user_id text, dog text)""")
 db.commit()
 
 app = Flask(__name__)
@@ -65,7 +71,7 @@ def registerConfirming():
         return render_template('register.html', error_type = "Passwords do not match, try again")
     #If both pass, it adds the newly registered user and directs the user to the login page
     else:
-        c1.execute("INSERT INTO users (username, password, contributions) VALUES (?, ?, ?)", (u, p, c))
+        c1.execute("INSERT INTO users (username, password) VALUES (?, ?)", (u, p))
         db.commit()
         return render_template("login.html", error_type = "Please login with your new account")
 
@@ -87,19 +93,9 @@ def welcome():
         for b in a:
             p_list.append(b)
 
-    usersContributions = []
-    if username in u_list:
-        user_index = u_list.index(username)
-        for x in c2.execute("SELECT contributions FROM users"):
-            usersContributions.append(x[0])
-        user_conts = usersContributions[user_index].split("~")
-
-        if (len(user_conts) >= 1):
-            user_conts.pop()
-
     if username in u_list and password in p_list:
         session["user"] = username
-        return render_template('homepage.html', user = username, contribution_list = user_conts, message = "Your Login Has Been Successful! \(^-^)/")
+        return render_template('homepage.html', user = username, message = "Your Login Has Been Successful! \(^-^)/")
     else:
         return render_template('login.html', error_type = "Invalid login attempt, please try again.")
 
@@ -110,24 +106,12 @@ def returnHome():
     db = sqlite3.connect("p0database.db")
     c4 = db.cursor()
 
-    usersContributions = []
     userList = []
     for x in c4.execute("SELECT username FROM users"):
         userList.append(x[0])
     user_index = userList.index(session["user"])
 
-    for x in c4.execute("SELECT contributions FROM users"):
-        usersContributions.append(x[0])
-
-    user_conts = usersContributions[user_index].split("~")
-    if (len(user_conts) >= 1):
-        user_conts.pop()
-
-    return render_template('homepage.html', user = session["user"], contribution_list = user_conts)
-
-@app.route("/explore", methods = ['GET', 'POST'])
-def gotoExplore():
-    return render_template('explore.html')
+    return render_template('homepage.html', user = session["user"])
 
 @app.route("/bookmarked-activities", methods = ['GET', 'POST'])
 def bookmarkedActivities():
@@ -141,21 +125,74 @@ def bookmarkedCats():
 def bookmarkedDogs():
     return render_template('bmdogs.html')
 
+@app.route("/explore", methods = ['GET', 'POST'])
+def gotoExplore():
+    db = sqlite3.connect("p0database.db")
+    c = db.cursor()
+    
+    ##advice slips
+    u = urllib.request.urlopen("https://api.adviceslip.com/advice")
+    response = u.read() #read the api
+    data = json.loads(response)
+    #variable
+    adviceQ = data['slip']['advice']
+    ##add to db
+    command = 'INSERT INTO advices VALUES ("{}");'.format(adviceQ)
+    c.execute(command)
+
+    ##activity
+    act = urllib.request.urlopen("http://www.boredapi.com/api/activity/")
+    actresponse = act.read() #read the api
+    actdata = json.loads(actresponse)
+    ##variables
+    activity = actdata['activity']
+    actType = actdata['type']
+    participants = actdata['participants']
+    ##add to db
+    command = 'INSERT INTO activities VALUES ("{}", "{}", "{}" );'.format(activity, actType, participants)
+    c.execute(command)
+
+    db.commit()
+
+    return render_template('explore.html', advice = adviceQ, activity = activity, type = actType, participants = participants)    
+
 @app.route("/dogs", methods = ['GET', 'POST'])
 def Dogs():
-    return render_template('dogs.html')
+    db = sqlite3.connect("p0database.db")
+    c = db.cursor()
+    
+    u = urllib.request.urlopen("https://dog.ceo/api/breeds/image/random")
+    response = u.read() #read the api
+    data = json.loads(response)    
+    pic = data['message']
+    ##add to db
+    command = 'INSERT INTO dogs VALUES ("{}");'.format(pic)
+    c.execute(command)
+    ##commit to db
+    db.commit()
+    
+    return render_template('dogs.html', pic = pic)
 
-# read key_nasa.txt file 
+# read key_api0.txt file 
 file = open("keys/key_api0.txt", "r")
 api_key = file.read()
 file.close()
 
 @app.route("/cats", methods = ['GET', 'POST'])
 def Cats():
+    db = sqlite3.connect("p0database.db")
+    c = db.cursor()
+    
     u = urllib.request.urlopen("https://api.thecatapi.com/v1/images/search?api_key=" + api_key) #open the api URL added with the key
     response = u.read() #read the api
     data = json.loads(response)
-    return render_template("cats.html", pic = data[0]['url']) #load the html on the website
+    pic = data[0]['url']
+    ##add to db
+    command = 'INSERT INTO cats VALUES ("{}");'.format(pic)
+    c.execute(command)
+    ##commit to db
+    db.commit()
+    return render_template("cats.html", pic = pic) #load the html on the website
 
 #Displays login page and removes user from session
 @app.route("/logout", methods = ['GET', 'POST'])

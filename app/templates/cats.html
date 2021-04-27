@@ -12,12 +12,27 @@ P3: ArRESTed Development, JuSt in Time
     <title> Serotonin' It Up</title>
   </head>
 
+  <script>
+    var change_o = function() {
+      console.log("~~~ presto change-o ~~~");
+      var heading = document.getElementById('catPic');
+      heading.src = "{{pic}}"; //WORK ON UNFINISHED
+    }
+  </script>
+
   <body>
     <h1> Serotonin' It Up</h1>
     <h2> Cats</h2>
-    <img src="{{pic}}"/>
+    <img id = "catPic" src="{{pic}}"/>
 
-    <p>Shuffle</p>
+    <button onclick="change_o()">
+      Hit me!
+    </button>
+    
+    <form action = "/cats">
+      <input type = "submit" value = "shuffle">
+    </form>
+
     <p>Bookmark</p>
 
     <form action = "/explore">
