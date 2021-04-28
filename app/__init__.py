@@ -63,8 +63,7 @@ def saveActivity():
     c = db.cursor()
 
     username = session.get("user")
-    actList = c.execute('SELECT * FROM activities ORDER BY activity DESC LIMIT 1;')
-    actList = c.fetchone()
+    actList = c.execute('SELECT * FROM activities').fetchall()[-1]
     actAct = actList[0]
     actType = actList[1]
     actPart = actList[2]
@@ -102,8 +101,7 @@ def saveCatImg():
     c = db.cursor()
 
     username = session.get("user")
-    catList = c.execute('SELECT * FROM cats ORDER BY cat DESC LIMIT 1;')
-    catList = c.fetchone()
+    catList = c.execute('SELECT * FROM cats').fetchall()[-1]
     url = catList[0]
 
     ##add to db
@@ -135,8 +133,7 @@ def saveDogImg():
     c = db.cursor()
 
     username = session.get("user")
-    dogList = c.execute('SELECT * FROM dogs ORDER BY dog DESC LIMIT 1;')
-    dogList = c.fetchone()
+    dogList = c.execute('SELECT * FROM dogs').fetchall()[-1]
     url = dogList[0]
 
     ##add to db
