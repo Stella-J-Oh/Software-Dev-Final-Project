@@ -11,7 +11,7 @@ import sqlite3
 import urllib.request
 import json
 import dbsetup
-from dbusers import app
+from app import app
 
 #Displays homepage when successful login
 @app.route("/homepage", methods = ['GET', 'POST'])
