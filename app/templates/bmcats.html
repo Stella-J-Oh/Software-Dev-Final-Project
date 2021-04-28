@@ -14,20 +14,23 @@ P3: ArRESTed Development, JuSt in Time
     <title> Bookmarked Cats </title>
   </head>
   <body>
+    <nav class="navbar navbar-light bg-light" id="webName">
+      <span class="navbar-brand mb-0 h1">Serotonin' It Up</span>
+    </nav>
 
-    <h1> Serotonin' It Up</h1>
-    <h2>Bookmarked Cats</h2>
+    <div class="jumbotron bg-white">
+      <h1 class="display-4">Bookmarked Cattos</h1>
+      <p>
+        {% for img in catArr %}
+        <img src="{{img}}" class="container"/>
+        <hr class="my-4">
+        {% endfor %}
+      </p>
+      <form action = "/homepage">
+        <input type = "submit" value = "Go Back" class="btn btn-outline-secondary btn-lg">
+      </form>
+    </div>
 
-    <p>
-      {% for img in catArr %}
-      <img src="{{img}}"/>
-      <br>
-      {% endfor %}
-    </p>
-
-    <form action = "/homepage">
-      <input type = "submit" value = "Go back to homepage">
-    </form>
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

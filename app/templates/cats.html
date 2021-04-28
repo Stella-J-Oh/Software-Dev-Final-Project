@@ -14,37 +14,41 @@ P3: ArRESTed Development, JuSt in Time
     <title> Serotonin' It Up</title>
   </head>
 
-  <script>
-    var change_o = function() {
-      console.log("~~~ presto change-o ~~~");
-      var heading = document.getElementById('catPic');
-      heading.src = "{{pic}}"; //WORK ON UNFINISHED
-    }
-  </script>
-
   <body>
-    <h1> Serotonin' It Up</h1>
-    <h2> Cats</h2>
+    <nav class="navbar navbar-light bg-light" id="webName">
+      <span class="navbar-brand mb-0 h1">Serotonin' It Up</span>
+    </nav>
 
-    <div class="container">
-      <img id = "catPic" src="{{pic}}"/>
+    <div class="jumbotron bg-white">
+      <h1 class="display-4">Cattos</h1>
+      <div class="container">
+        <img src="{{pic}}"/>
+      </div>
+      <hr class="my-4">
+
+      <form action = "/cats" class="bmvalue">
+        <input type = "submit" value = "Shuffle" class="btn btn-outline-primary">
+      </form>
+      
+      <form action = "/saveCat" class="bmvalue">
+        <input type = "submit" value = "Bookmark Picture" class="btn btn-outline-info">
+      </form>
+
+      <br><br>
+  
+      <form action = "/explore">
+        <input type = "submit" value = "Go Back To Explore" class="btn btn-outline-success btn-lg" >
+      </form>
+  
+      <form action = "/homepage">
+        <input type = "submit" value = "Go To Homepage" class="btn btn-outline-secondary btn-lg">
+      </form>
+
     </div>
 
-    <form action = "/cats">
-      <input type = "submit" value = "Shuffle">
-    </form>
     
-    <form action = "/saveCat">
-      <input type = "submit" value = "Bookmark Picture">
-    </form>
 
-    <form action = "/explore">
-      <input type = "submit" value = "Go Back">
-    </form>
 
-    <form action = "/homepage">
-        <input type = "submit" value = "Go to Homepage">
-    </form>
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

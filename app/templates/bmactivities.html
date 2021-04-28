@@ -14,26 +14,30 @@ P3: ArRESTed Development, JuSt in Time
     <title> Bookmarked Activities </title>
   </head>
   <body>
+    <nav class="navbar navbar-light bg-light" id="webName">
+      <span class="navbar-brand mb-0 h1">Serotonin' It Up</span>
+    </nav>
 
-    <h1> Serotonin' It Up </h1>
-    <h2> Bookmarked Activities</h2>
+    <div class="jumbotron bg-white">
+      <h1 class="display-4">Bookmarked Activities</h1>
+      <hr class="my-4">
+      <p>
+        {% for row in actArr %}
+        <div>
+          {{row[0]}}
+          <br>
+          {{row[1]}}
+          <br>
+          {{row[2]}}
+        </div>
+        <hr class="my-4">
+        {% endfor %}
+      </p>
+      <form action = "/homepage">
+        <input type = "submit" value = "Go Back" class="btn btn-outline-secondary btn-lg">
+      </form>
+    </div>
 
-    <p>
-      {% for row in actArr %}
-      <div>
-        {{row[0]}}
-        <br>
-        {{row[1]}}
-        <br>
-        {{row[2]}}
-      </div>
-      {% endfor %}
-    </p>
-
-    <form action = "/homepage">
-      <input type = "submit" value = "Go back to homepage">
-    </form>
-    
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

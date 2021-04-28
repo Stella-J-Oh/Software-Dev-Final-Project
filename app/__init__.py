@@ -25,6 +25,7 @@ c.execute("""CREATE TABLE IF NOT EXISTS bmActivities (user_id text, activity tex
 c.execute("""CREATE TABLE IF NOT EXISTS bmCats (user_id text, cat text)""")
 c.execute("""CREATE TABLE IF NOT EXISTS bmDogs (user_id text, dog text)""")
 db.commit()
+db.close()
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32) #need this, if we didn't include this it would produce a runtime error
@@ -74,6 +75,7 @@ def registerConfirming():
     else:
         c1.execute("INSERT INTO users (username, password) VALUES (?, ?)", (u, p))
         db.commit()
+        db.close()
         return render_template("login.html", error_type = "Please login with your new account")
 
 
@@ -113,12 +115,42 @@ def returnHome():
 
     return render_template('homepage.html', user = session["user"])
 
+@app.route("/explore", methods = ['GET', 'POST'])
+def gotoExplore():
+    db = sqlite3.connect("p0database.db")
+    c = db.cursor()
+    
+    ##advice slips
+    u = urllib.request.urlopen("https://api.adviceslip.com/advice")
+    response = u.read() #read the api
+    data = json.loads(response)
+    #variable
+    adviceQ = data['slip']['advice']
+    ##add to db
+    c.execute('INSERT INTO advices (advice) VALUES (?)',(adviceQ,))
+    
+    ##activity
+    act = urllib.request.urlopen("http://www.boredapi.com/api/activity/")
+    actresponse = act.read() #read the api
+    actdata = json.loads(actresponse)
+    ##variables
+    activity = actdata['activity']
+    actType = actdata['type']
+    participants = actdata['participants']
+    ##add to db
+    c.execute('INSERT INTO activities (activity, type, participants) VALUES (?, ?, ?)', (activity, actType, participants))
+
+    db.commit()
+    db.close()
+
+    return render_template('explore.html', advice = adviceQ, activity = activity, type = actType, participants = participants)
+
 @app.route("/saveAct", methods = ['GET', 'POST'])
 def saveActivity():
     db = sqlite3.connect("p0database.db")
     c = db.cursor()
 
-    user_id = session.get("user")
+    username = session.get("user")
     actList = c.execute('SELECT * FROM activities ORDER BY activity DESC LIMIT 1;')
     actList = c.fetchone()
     actAct = actList[0]
@@ -126,48 +158,12 @@ def saveActivity():
     actPart = actList[2]
 
     ##add to db
-    command = 'INSERT INTO bmActivities VALUES ("{}","{}", "{}", "{}");'.format(user_id, actAct, actType, actPart)
-    c.execute(command)
+    c.execute('INSERT INTO bmActivities (user_id, activity, type, participants) VALUES (?,?,?,?)',(username, actAct, actType, actPart))
     ##commit to db
     db.commit()
+    db.close()
 
     return gotoExplore() 
-
-@app.route("/saveDog", methods = ['GET', 'POST'])
-def saveDogImg():
-    db = sqlite3.connect("p0database.db")
-    c = db.cursor()
-
-    user_id = session.get("user")
-    dogList = c.execute('SELECT * FROM dogs ORDER BY dog DESC LIMIT 1;')
-    dogList = c.fetchone()
-    url = dogList[0]
-
-    ##add to db
-    command = 'INSERT INTO bmDogs VALUES ("{}","{}");'.format(user_id, url)
-    c.execute(command)
-    ##commit to db
-    db.commit()
-
-    return Dogs() 
-
-@app.route("/saveCat", methods = ['GET', 'POST'])
-def saveCatImg():
-    db = sqlite3.connect("p0database.db")
-    c = db.cursor()
-
-    user_id = session.get("user")
-    catList = c.execute('SELECT * FROM cats ORDER BY cat DESC LIMIT 1;')
-    catList = c.fetchone()
-    url = catList[0]
-
-    ##add to db
-    command = 'INSERT INTO bmCats VALUES ("{}","{}");'.format(user_id, url)
-    c.execute(command)
-    ##commit to db
-    db.commit()
-
-    return Cats() 
 
 @app.route("/bookmarked-activities", methods = ['GET', 'POST'])
 def bookmarkedActivities():
@@ -186,6 +182,24 @@ def bookmarkedActivities():
             actArr.append(actRow) 
     return render_template('bmactivities.html', actArr = actArr)
 
+@app.route("/saveCat", methods = ['GET', 'POST'])
+def saveCatImg():
+    db = sqlite3.connect("p0database.db")
+    c = db.cursor()
+
+    username = session.get("user")
+    catList = c.execute('SELECT * FROM cats ORDER BY cat DESC LIMIT 1;')
+    catList = c.fetchone()
+    url = catList[0]
+
+    ##add to db
+    c.execute('INSERT INTO bmCats (user_id, cat) VALUES (?,?)',(username, url))
+    ##commit to db
+    db.commit()
+    db.close()
+
+    return Cats() 
+
 @app.route("/bookmarked-cats", methods = ['GET', 'POST'])
 def bookmarkedCats():
     db = sqlite3.connect("p0database.db")
@@ -199,6 +213,24 @@ def bookmarkedCats():
             catArr.append(row[1]) 
     return render_template('bmcats.html', catArr = catArr)
 
+@app.route("/saveDog", methods = ['GET', 'POST'])
+def saveDogImg():
+    db = sqlite3.connect("p0database.db")
+    c = db.cursor()
+
+    username = session.get("user")
+    dogList = c.execute('SELECT * FROM dogs ORDER BY dog DESC LIMIT 1;')
+    dogList = c.fetchone()
+    url = dogList[0]
+
+    ##add to db
+    c.execute('INSERT INTO bmDogs (user_id, dog) VALUES (?,?)',(username, url))
+    ##commit to db
+    db.commit()
+    db.close()
+
+    return Dogs() 
+
 @app.route("/bookmarked-dogs", methods = ['GET', 'POST'])
 def bookmarkedDogs():
     db = sqlite3.connect("p0database.db")
@@ -210,38 +242,7 @@ def bookmarkedDogs():
     for row in c:
         if (row[0] == user_id):
             dogArr.append(row[1]) 
-    return render_template('bmdogs.html', dogArr = dogArr)
-
-@app.route("/explore", methods = ['GET', 'POST'])
-def gotoExplore():
-    db = sqlite3.connect("p0database.db")
-    c = db.cursor()
-    
-    ##advice slips
-    u = urllib.request.urlopen("https://api.adviceslip.com/advice")
-    response = u.read() #read the api
-    data = json.loads(response)
-    #variable
-    adviceQ = data['slip']['advice']
-    ##add to db
-    command = 'INSERT INTO advices VALUES ("{}");'.format(adviceQ)
-    c.execute(command)
-
-    ##activity
-    act = urllib.request.urlopen("http://www.boredapi.com/api/activity/")
-    actresponse = act.read() #read the api
-    actdata = json.loads(actresponse)
-    ##variables
-    activity = actdata['activity']
-    actType = actdata['type']
-    participants = actdata['participants']
-    ##add to db
-    command = 'INSERT INTO activities VALUES ("{}", "{}", "{}" );'.format(activity, actType, participants)
-    c.execute(command)
-
-    db.commit()
-
-    return render_template('explore.html', advice = adviceQ, activity = activity, type = actType, participants = participants)    
+    return render_template('bmdogs.html', dogArr = dogArr)    
 
 @app.route("/dogs", methods = ['GET', 'POST'])
 def Dogs():
@@ -253,10 +254,10 @@ def Dogs():
     data = json.loads(response)    
     pic = data['message']
     ##add to db
-    command = 'INSERT INTO dogs VALUES ("{}");'.format(pic)
-    c.execute(command)
+    c.execute('INSERT INTO dogs (dog) VALUES (?);',(pic,))
     ##commit to db
     db.commit()
+    db.close()
     
     return render_template('dogs.html', pic = pic)
 
@@ -275,10 +276,10 @@ def Cats():
     data = json.loads(response)
     pic = data[0]['url']
     ##add to db
-    command = 'INSERT INTO cats VALUES ("{}");'.format(pic)
-    c.execute(command)
+    c.execute('INSERT INTO cats (cat) VALUES (?);',(pic,))
     ##commit to db
     db.commit()
+    db.close()
     return render_template("cats.html", pic = pic) #load the html on the website
 
 #Displays login page and removes user from session

@@ -16,40 +16,53 @@ P3: ArRESTed Development, JuSt in Time
   </head>
 
   <body>
-    <h1>Serotonin' It Up</h1>
-    <h1>Explore</h1>
-    <h3>Advice</h3>
-    <p>"{{advice}}"</p>
+    <nav class="navbar navbar-light bg-light" id="webName">
+      <span class="navbar-brand mb-0 h1">Serotonin' It Up</span>
+    </nav>
 
-    <h3>Activity</h3>
-    <p>
-      {{activity}} 
-      <br>
-      Type: {{type}} 
-      <br>
-      Participants: {{participants}}
-    </p>
-
-    <form action = "/saveAct">
-        <input type = "submit" value = "Bookmark Activity">
-    </form>
-
-    <p>Dog Image</p>
-    <form action = "/dogs">
-        <input type = "submit" value = "Dog">
+    <div class="jumbotron bg-white">
+      <h1 class="display-4">Explore</h1>
+      <p class="lead">Advice</p>
+      <p>"{{advice}}"</p>
+      <hr class="my-4">
+      <p class="lead">Activity</p>
+      <p>
+        {{activity}}
+        <br>
+        Type: {{type}} 
+        <br>
+        Participants: {{participants}}
+      </p>
+      <form action = "/saveAct">
+        <input type = "submit" value = "Bookmark Activity" class="btn btn-outline-info">
       </form>
-
-    <p>Cat Image</p>
-    <form action = "/cats">
+      <hr class="my-4">
+      <p class="lead">Dog Image</p>
+      <form action = "/dogs">
+          <input type = "submit" value = "Dog">
+      </form>
+      <hr class="my-4">
+      <p class="lead">Cat Image</p>
+      <form action = "/cats">
         <input type = "submit" value = "Cat">
       </form>
+      <hr class="my-4">
+      <form action = "/homepage">
+        <input type = "submit" value = "Go To Homepage" class="btn btn-outline-secondary btn-lg">
+      </form>
 
-    <form action = "/homepage">
-      <input type = "submit" value = "Go Back">
-    </form>
+    </div>
+
+
+
+    
+
+
 
     <script src="explore.js"></script>
 
+    <!-- JS -->
+    <script src="javascript.js"></script>
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

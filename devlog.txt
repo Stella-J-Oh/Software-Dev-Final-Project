@@ -61,3 +61,7 @@ To-do list:
 - Finish JS
 - Add CSS/Bootstrap
 ================================================================================
+stellaO -- 2021-04-28 10:39
+Corrected sqlite command for inserting new values into table that doesn't use 
+python string templating to form db queries. 
+Discovered that cat image repeats when bookmarked. Worked on CSS and bootstrap elements.
