@@ -32,6 +32,7 @@ app.secret_key = os.urandom(32) #need this, if we didn't include this it would p
 #Checks if user is in session
 @app.route("/", methods = ['GET', 'POST']) #methods=['GET', 'POST']
 def disp_loginpage():
+
     if "user" in session:
         return render_template('homepage.html', user = session["user"])
     else:
@@ -99,7 +100,6 @@ def welcome():
     else:
         return render_template('login.html', error_type = "Invalid login attempt, please try again.")
 
-
 #Displays homepage when successful login
 @app.route("/homepage", methods = ['GET', 'POST'])
 def returnHome():
@@ -113,17 +113,104 @@ def returnHome():
 
     return render_template('homepage.html', user = session["user"])
 
+@app.route("/saveAct", methods = ['GET', 'POST'])
+def saveActivity():
+    db = sqlite3.connect("p0database.db")
+    c = db.cursor()
+
+    user_id = session.get("user")
+    actList = c.execute('SELECT * FROM activities ORDER BY activity DESC LIMIT 1;')
+    actList = c.fetchone()
+    actAct = actList[0]
+    actType = actList[1]
+    actPart = actList[2]
+
+    ##add to db
+    command = 'INSERT INTO bmActivities VALUES ("{}","{}", "{}", "{}");'.format(user_id, actAct, actType, actPart)
+    c.execute(command)
+    ##commit to db
+    db.commit()
+
+    return gotoExplore() 
+
+@app.route("/saveDog", methods = ['GET', 'POST'])
+def saveDogImg():
+    db = sqlite3.connect("p0database.db")
+    c = db.cursor()
+
+    user_id = session.get("user")
+    dogList = c.execute('SELECT * FROM dogs ORDER BY dog DESC LIMIT 1;')
+    dogList = c.fetchone()
+    url = dogList[0]
+
+    ##add to db
+    command = 'INSERT INTO bmDogs VALUES ("{}","{}");'.format(user_id, url)
+    c.execute(command)
+    ##commit to db
+    db.commit()
+
+    return Dogs() 
+
+@app.route("/saveCat", methods = ['GET', 'POST'])
+def saveCatImg():
+    db = sqlite3.connect("p0database.db")
+    c = db.cursor()
+
+    user_id = session.get("user")
+    catList = c.execute('SELECT * FROM cats ORDER BY cat DESC LIMIT 1;')
+    catList = c.fetchone()
+    url = catList[0]
+
+    ##add to db
+    command = 'INSERT INTO bmCats VALUES ("{}","{}");'.format(user_id, url)
+    c.execute(command)
+    ##commit to db
+    db.commit()
+
+    return Cats() 
+
 @app.route("/bookmarked-activities", methods = ['GET', 'POST'])
 def bookmarkedActivities():
-    return render_template('bmactivities.html')
+    db = sqlite3.connect("p0database.db")
+    c = db.cursor()
+
+    user_id = session.get("user")
+    c.execute('SELECT * FROM bmActivities')
+    actArr = []
+    for row in c:
+        if (row[0] == user_id):
+            actRow = []
+            actRow.append(row[1])
+            actRow.append(row[2])
+            actRow.append(row[3])
+            actArr.append(actRow) 
+    return render_template('bmactivities.html', actArr = actArr)
 
 @app.route("/bookmarked-cats", methods = ['GET', 'POST'])
 def bookmarkedCats():
-    return render_template('bmcats.html')
+    db = sqlite3.connect("p0database.db")
+    c = db.cursor()
+
+    user_id = session.get("user")
+    c.execute('SELECT * FROM bmCats')
+    catArr = []
+    for row in c:
+        if (row[0] == user_id):
+            catArr.append(row[1]) 
+    return render_template('bmcats.html', catArr = catArr)
 
 @app.route("/bookmarked-dogs", methods = ['GET', 'POST'])
 def bookmarkedDogs():
-    return render_template('bmdogs.html')
+    db = sqlite3.connect("p0database.db")
+    c = db.cursor()
+
+    user_id = session.get("user")
+    c.execute('SELECT * FROM bmDogs')
+    dogArr = []
+    for row in c:
+        if (row[0] == user_id):
+            dogArr.append(row[1]) 
+    return render_template('bmdogs.html', dogArr = dogArr)
 
 @app.route("/explore", methods = ['GET', 'POST'])
 def gotoExplore():
