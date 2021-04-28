@@ -198,6 +198,10 @@ def Cats():
     db.close()
     return render_template("cats.html", pic = pic) #load the html on the website
 
+@app.route("/game", methods = ['GET', 'POST'])
+def loadGame():
+    return render_template('jsGames.html')    
+
 #Displays login page and removes user from session
 @app.route("/logout", methods = ['GET', 'POST'])
 def logout():
