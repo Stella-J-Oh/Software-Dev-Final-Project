@@ -202,6 +202,10 @@ def Cats():
 def loadGame():
     return render_template('jsGames.html')    
 
+@app.route("/terror", methods = ['GET', 'POST'])
+def terror():
+    return render_template('terror.html')
+
 #Displays login page and removes user from session
 @app.route("/logout", methods = ['GET', 'POST'])
 def logout():

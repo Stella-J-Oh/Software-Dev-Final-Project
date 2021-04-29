@@ -15,58 +15,66 @@ P3: ArRESTed Development, JuSt in Time
     <title>Explore</title>
   </head>
 
-  <body>
-    <nav class="navbar navbar-light bg-light" id="webName">
-      <span class="navbar-brand mb-0 h1">Serotonin' It Up</span>
+  <body style="background-color: #ddfff7; color: #2e5266;">
+    <nav class="navbar navbar-light .bg-transparent" id="webName" style="background-color: #2e5266;">
+      <span class="navbar-brand mb-0 h1" style="color: #ddfff7;">Serotonin' It Up</span>
     </nav>
 
-    <div class="jumbotron bg-white">
-      <h1 class="display-4">Explore</h1>
-      <p class="lead">Advice</p>
-      <p>"{{advice}}"</p>
+    <div class="jumbotron" style="background-color: #ddfff7">
+      <h1 class="display-4" style="font-weight: bold;">Explore</h1>
       <hr class="my-4">
-      <p class="lead">Activity</p>
-      <p>
-        {{activity}}
-        <br>
-        Type: {{type}}
-        <br>
-        Participants: {{participants}}
-      </p>
-      <form action = "/saveAct">
-        <input type = "submit" value = "Bookmark Activity" class="btn btn-outline-info">
+      <h2>Advice</h2>
+      <div class="card" style="background-color: white;">
+        <div class="card-body">
+          <h3>"{{advice}}"</h3>
+        </div>
+      </div>
+      <hr class="my-4">
+      <h2>Activity</h2>
+      
+      <div class="card" style="background-color: white;">
+        <div class="card-body">
+          <h3>{{activity}}</h3>
+          <b>Type:</b> {{type}}
+          <br>
+          <b>Participants:</b> {{participants}}
+          </div>
+      </div>
+      <br>
+      <form action = "/explore" class="bmvalue">
+        <input type = "submit" value = "Shuffle" class="btn btn-primary">
+      </form>
+      <form action = "/saveAct" class="bmvalue">
+        <input type = "submit" value = "Bookmark Activity" class="btn btn-info">
       </form>
       <hr class="my-4">
-      <p class="lead">Dog Image</p>
+      <h2>Dogs</h2>
+
+
       <form action = "/dogs">
-          <input type = "submit" value = "Dog">
+        <input type = "image" value = "doggo" width="300px" height="200px" src="https://www.thesprucepets.com/thmb/wpN_ZunUaRQAc_WRdAQRxeTbyoc=/4231x2820/filters:fill(auto,1)/adorable-white-pomeranian-puppy-spitz-921029690-5c8be25d46e0fb000172effe.jpg">
       </form>
+      <p>Pet me!^</p>
 
       <hr class="my-4">
-      <p class="lead">Cat Image</p>
+      <h2>Cats</h2>
       <form action = "/cats">
-        <input type = "submit" value = "Cat">
+        <input type = "image" value = "Cat" width="300px" height="200px" src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F34%2F2018%2F05%2F12170411%2Fcat-kitten-138468381.jpg&q=85">
       </form>
+      <p>Pet me!^</p>
 
       <hr class="my-4">
-      <p class="lead">Games</p>
+      <h2>"Games"</h2>
       <form action = "/game">
-        <input type = "submit" value = "Helena's Cursed JS Laboratory">
+        <input type = "submit" value = "Enter at your own risk" class="btn btn-info">
       </form>
-
 
       <hr class="my-4">
       <form action = "/homepage">
-        <input type = "submit" value = "Go To Homepage" class="btn btn-outline-secondary btn-lg">
+        <input type = "submit" value = "Go To Homepage" class="btn btn-secondary btn-lg">
       </form>
 
     </div>
-
-
-
-
-
-
 
     <script src="explore.js"></script>
 

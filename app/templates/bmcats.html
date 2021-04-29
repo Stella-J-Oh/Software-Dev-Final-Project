@@ -13,22 +13,22 @@ P3: ArRESTed Development, JuSt in Time
     <link rel="stylesheet" href="../static/css/layout.css">
     <title> Bookmarked Cats </title>
   </head>
-  <body>
-    <nav class="navbar navbar-light bg-light" id="webName">
-      <span class="navbar-brand mb-0 h1">Serotonin' It Up</span>
+  <body style="background-color: #ddfff7; color: #2e5266;">
+    <nav class="navbar navbar-light .bg-transparent" id="webName" style="background-color: #2e5266;">
+      <span class="navbar-brand mb-0 h1" style="color: #ddfff7;">Serotonin' It Up</span>
     </nav>
 
-    <div class="jumbotron bg-white">
-      <h1 class="display-4">Bookmarked Cattos</h1>
+    <div class="jumbotron" style="background-color: #ddfff7">
+      <h1 class="display-4" style="font-weight: bold;">Bookmarked Cattos</h1>
       <hr class="my-4">
       <p>
         {% for img in catArr %}
-        <img src="{{img}}" class="container"/>
+        <img src="{{img}}"/>
         <hr class="my-4">
         {% endfor %}
       </p>
       <form action = "/homepage">
-        <input type = "submit" value = "Go Back" class="btn btn-outline-secondary btn-lg">
+        <input type = "submit" value = "Go Back" class="btn btn-secondary btn-lg">
       </form>
     </div>
 

@@ -14,32 +14,32 @@ P3: ArRESTed Development, JuSt in Time
     <title> Doggos</title>
   </head>
 
-  <body>
-    <nav class="navbar navbar-light bg-light" id="webName">
-      <span class="navbar-brand mb-0 h1">Serotonin' It Up</span>
+  <body style="background-color: #ddfff7; color: #2e5266;">
+    <nav class="navbar navbar-light .bg-transparent" id="webName" style="background-color: #2e5266;">
+      <span class="navbar-brand mb-0 h1" style="color: #ddfff7;">Serotonin' It Up</span>
     </nav>
 
-    <div class="jumbotron bg-white">
-      <h1 class="display-4">Doggos</h1>
-      <div class="container">
-        <img src="{{pic}}"/>
-      </div>
+    <div class="jumbotron" style="background-color: #ddfff7">
+      <h1 class="display-4" style="font-weight: bold;">Doggos</h1>
       <hr class="my-4">
 
+      <div id = "imgBox" class="container">
+        <img src="{{pic}}"/>
+      </div>
+      <br>
       <form action = "/dogs" class="bmvalue">
-        <input type = "submit" value = "Shuffle" class="btn btn-outline-primary">
+        <input type = "submit" value = "Shuffle" class="btn btn-primary">
       </form>
   
       <form action = "/saveDog" class="bmvalue"> 
-        <input type = "submit" value = "Bookmark Picture" class="btn btn-outline-info">
+        <input type = "submit" value = "Bookmark Picture" class="btn btn-info">
       </form>
-
-      <br><br>
+      <hr class="my-4">
   
       <form action = "/explore">
         <input type = "submit" value = "Go Back To Explore" class="btn btn-outline-success btn-lg" >
       </form>
-  
+      <br>
       <form action = "/homepage">
         <input type = "submit" value = "Go To Homepage" class="btn btn-outline-secondary btn-lg">
       </form>

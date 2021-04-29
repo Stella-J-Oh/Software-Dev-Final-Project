@@ -10,29 +10,30 @@ K15 -- Sessions Greetings
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/css/layout.css">
-    <title> Seotonin' It Up</title>
+    <title> Serotonin' It Up</title>
   </head>
 
-  <body>
-    <nav class="navbar navbar-light bg-light" id="webName">
-      <span class="navbar-brand mb-0 h1">Serotonin' It Up</span>
+  <body style="background-color: #ddfff7; color: #2e5266;">
+    <nav class="navbar navbar-light .bg-transparent" id="webName" style="background-color: #2e5266;">
+      <span class="navbar-brand mb-0 h1" style="color: #ddfff7;">Serotonin' It Up</span>
     </nav>
-    <h2> Enter your username & password below to proceed. </h2>
-    <h3> {{error_type}} </h3>
 
-    <form action="/auth" method = "post">
-      <input type="text" placeholder="Username" name="username">
-      <input type="password" placeholder="Password" name="password">
-      <input type="submit" name="sub1">
-    </form>
-    <br>
-
-    <h2>
-      Don't have an account?
-      <form action = "/register">
-        <input type = "submit" value = "Register">
+    <div class="jumbotron" style="background-color: #ddfff7">
+      <h3> {{error_type}} </h3>
+      <h1 class="display-4" style="font-weight: bold;">Login</h1>
+      <hr class="my-4">
+      <form action="/auth" method = "post">
+        <input type="text" placeholder="Username" name="username" style="background-color: #ddfff7; color: #2e5266;"><br><br>
+        <input type="password" placeholder="Password" name="password" style="background-color: #ddfff7; color: #2e5266;"><br><br>
+        <input type="submit" name="sub1" class="btn btn-info">
       </form>
-    </h2>
+      <br>
+      <h3>Don't have an account?</h3>
+      <form action = "/register">
+        <input type = "submit" value = "Register" class="btn btn-outline-info">
+      </form>
+    </div>
+
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

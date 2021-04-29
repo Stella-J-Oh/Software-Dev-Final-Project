@@ -14,22 +14,27 @@ P0 - Da Art of Storytellin' (Pt. 2)
     <title> Seotonin' It Up</title>
   </head>
 
-  <body>
-    <nav class="navbar navbar-light bg-light" id="webName">
-      <span class="navbar-brand mb-0 h1">Serotonin' It Up</span>
+  <body style="background-color: #ddfff7; color: #2e5266;">
+    <nav class="navbar navbar-light .bg-transparent" id="webName" style="background-color: #2e5266;">
+      <span class="navbar-brand mb-0 h1" style="color: #ddfff7;">Serotonin' It Up</span>
     </nav>
-    <h1> Register a Username & Password </h1>
-    <h2>{{ error_type }}</h2>
-    <form action="/register_auth" method="post">
-      <input type="text" placeholder="Username" name="new_username">
-      <input type="password" placeholder="Password" name="new_password_1">
-      <input type="password" placeholder="Confirm Passord" name="new_password_2">
-      <input type="submit" name="sub1">
-    </form>
-    <br>
-    <form action="/logout">
-      <input type="submit" value="Login Page">
-    </form>
+    <div class="jumbotron" style="background-color: #ddfff7">
+      <h3> {{error_type}} </h3>
+      <h1 class="display-4" style="font-weight: bold;">Register</h1>
+      <hr class="my-4">
+      <form action="/register_auth" method="post">
+        <input type="text" placeholder="Username" name="new_username" class="text" style="background-color: #ddfff7; color: #2e5266;"><br><br>
+        <input type="password" placeholder="Password" name="new_password_1" style="background-color: #ddfff7; color: #2e5266;">
+        <input type="password" placeholder="Confirm Password" name="new_password_2" style="background-color: #ddfff7; color: #2e5266;">
+        <br><br>
+        <input type="submit" name="sub1" class="btn btn-info">
+      </form>
+      <br>
+      <form action="/logout">
+        <input type="submit" value="Login Page" class="btn btn-outline-info">
+      </form>
+    </div>
+
     <!-- bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

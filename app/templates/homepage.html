@@ -13,33 +13,37 @@ P3: ArRESTed Development, JuSt in Time
     <link rel="stylesheet" href="../static/css/layout.css">
     <title> Homepage </title>
   </head>
-  <body>
-    <nav class="navbar navbar-light bg-light" id="webName">
-      <span class="navbar-brand mb-0 h1">Serotonin' It Up</span>
+  <body style="background-color: #ddfff7; color: #2e5266;">
+    <nav class="navbar navbar-light .bg-transparent" id="webName" style="background-color: #2e5266;">
+      <span class="navbar-brand mb-0 h1" style="color: #ddfff7;">Serotonin' It Up</span>
     </nav>
 
-    <div class="jumbotron bg-white">
+    <div class="jumbotron" style="background-color: #ddfff7">
       <h1 class="display-4">Welcome {{user}}!</h1>
-      <p class="lead">Bookmarks</p>
       <hr class="my-4">
+      <h2>Bookmarks</h2>
       <p>
         <form action = "/bookmarked-activities" class="bmvalue">
-          <input type = "submit" value = "Activities" class="btn btn-outline-danger btn-lg">
+          <input type = "submit" value = "Activities" class="btn btn-info">
         </form>
         <form action = "/bookmarked-cats" class="bmvalue" >
-          <input type = "submit" value = "Cats" class="btn btn-outline-warning btn-lg">
+          <input type = "submit" value = "Cats" class="btn btn-info">
         </form>
         <form action = "/bookmarked-dogs" class="bmvalue" >
-          <input type = "submit" value = "Dogs" class="btn btn-outline-primary btn-lg" >
+          <input type = "submit" value = "Dogs" class="btn btn-info">
         </form>
       </p>
-
-      <form action = "/explore">
-        <input type = "submit" value = "Explore" class="btn btn-outline-success btn-large">
-      </form>
-      <br>
+      <hr class="my-4">
+      <h2>Go Explore</h2>
+      <p>
+        <form action = "/explore">
+          <input type = "submit" value = "Explore" class="btn btn-success btn-large">
+        </form>
+      </p>
+      <hr class="my-4">
+      
       <form action = "/logout">
-        <input type = "submit" value = "Logout" class="btn btn-outline-dark btn-large">
+        <input type = "submit" value = "Logout" class="btn btn-dark btn-large">
       </form>
     </div>
 

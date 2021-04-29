@@ -65,3 +65,19 @@ stellaO -- 2021-04-28 10:39
 Corrected sqlite command for inserting new values into table that doesn't use 
 python string templating to form db queries. 
 Discovered that cat image repeats when bookmarked. Worked on CSS and bootstrap elements.
+================================================================================
+stellaO -- 2021-04-28 17:30
+Constance, Helena, and I worked together to fix bookmarking functionality.
+================================================================================
+constanceC -- 2021-04-28 18:00
+Helena and I worked on the Javascript functionalities. We made the bad jokes
+feature and started the yoshi feature.
+================================================================================
+helenaW -- 2021-04-28 19:30
+Constance and I struggled with the yoshi feature.
+================================================================================
+stellaO -- 2021-04-28 20:00
+Group met together to work on Javascript features. Completed Bootstrap/CSS 
+design and added some additional features. 
+
+

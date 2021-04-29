@@ -7,118 +7,101 @@ P3: ArRESTed Development, JuSt in Time
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/layout.css">
 
-    <style>
-      .green  {color : #00ff00;}
-      .white {color : #ffffff;}
-    </style>
-    <title>Javascript Games</title>
+<head>
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/css/layout.css">
 
-  </head>
-  <script>
-    R=0;
-    x1=.1;
-    y1=.05;
-    x2=.25;
-    y2=.24;
-    x3=1.6;
-    y3=.24;
-    x4=300;
-    y4=200;
-    x5=300;
-    y5=200;
-    DI=document.getElementsByTagName("img");
-    DIL=DI.length;
-    var f = function(b){
-      for(i=0; i-DIL; i++){
-        DIS=DI[ i ].style;
-        DIS.position='absolute';
-        DIS.left=(Math.sin(R*x1+i*x2+x3)*x4+x5)+"px";
-        DIS.top=(Math.cos(R*y1+i*y2+y3)*y4+y5)+"px"
-      }R++
-    }setInterval('A()',5);
-        void(0);
-  </script>
-  <body>
-    <nav class="navbar navbar-light bg-light" id="webName">
-      <span class="navbar-brand mb-0 h1">Serotonin' It Up</span>
-    </nav>
+  <style>
+    .green {
+      color: #00ff00;
+    }
 
-    <div class="jumbotron bg-white">
-      <h1 class="display-4">Javascript Activities</h1>
-      <hr class="my-4">
+    .white {
+      color: #ddfff7;
+    }
+  </style>
+  <title>JS Games</title>
+</head>
 
-      <h2>Bad Jokes</h2>
-      <t>Mouse over the area below the joke to read the horrendous punchline!</t><br><br>
-      <b>So, I purchased some shoes from a drug dealer...</b><br>
-      <ul id="joke1" style="color: green; list-style-type: none;">
-        <li class="white"><i>I don't know what he LACED them with, but I was TRIPPING all day!</i></li>
-      </ul>
-      <b>How did the Atlantic Ocean say goodbye to the Pacific Ocean?</b><br>
-      <ul id="joke2" style="color: green; list-style-type: none;">
-        <li class="white"><i>It WAVED!</i></li>
-      </ul>
-      <b>What's the best thing about living in Switzerland?</b>
-      <ul id="joke3" style="color: green; list-style-type: none;">
-        <li class="white"><i>I don't know, but the flag is a BIG PLUS!</i></li>
-      </ul>
+<body style="background-color: #ddfff7; color: #2e5266;">
+  <nav class="navbar navbar-light .bg-transparent" id="webName" style="background-color: #2e5266;">
+    <span class="navbar-brand mb-0 h1" style="color: #ddfff7;">Serotonin' It Up</span>
+  </nav>
 
-      <script>
-        var thelist = document.getElementById("joke1");
-        var litems = thelist.children;
-        for(var i = 0; i < litems.length; i++) {
-          litems[i].addEventListener('mouseout', function(e){
-            console.log("user has moved out of this:" + this);
-            this.classList.toggle('white');
-          });
-        }
-        var thelist = document.getElementById("joke2");
-        var litems = thelist.children;
-        for(var i = 0; i < litems.length; i++) {
-          litems[i].addEventListener('mouseout', function(e){
-            console.log("user has moved out of this:" + this);
-            this.classList.toggle('white');
-          });
-        }
-        var thelist = document.getElementById("joke3");
-        var litems = thelist.children;
-        for(var i = 0; i < litems.length; i++) {
-          litems[i].addEventListener('mouseout', function(e){
-            console.log("user has moved out of this:" + this);
-            this.classList.toggle('white');
-          });
-        }
-      </script>
-      <br>
-      <h2>Oh Shit It's Beeg Yoshi</h2>
+  <div class="jumbotron" style="background-color: #ddfff7">
+    <h1 class="display-4" style="font-weight: bold;">JS Activities</h1>
+    <hr class="my-4">
 
-      <button onclick="f(b)">
-        Unleash The Terror
-      </button>
-      <img src="../static/BeegYoshi.png"/>
+    <h2>Meditation Station</h2>
+    <audio controls id="music">
+      <source src="../static/Serotonin.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+      </audio>
+      
+      <p>Click the buttons to play or pause the music. <br> *Fun fact: Helena, Constance, and Stella made this music!</p>
+      
+      <button onclick="play()" type="button" class="btn btn-outline-info">Play </button>
+      <button onclick="pause()" type="button" class="btn btn-outline-info">Pause</button>
+      
+    <script>
+      var myMusic= document.getElementById("music");
+      function play() {
+      myMusic.play();
+      }
+      
+      function pause() {
+      myMusic.pause();
+      }
 
+    </script>
+    <hr class="my-4">
+    <h2>Bad Jokes</h2>
+    <t>Mouse over the area below the joke to read the horrendous punchline!</t><br><br>
+    <b>So, I purchased some shoes from a drug dealer...</b><br>
+    <ul id="joke1" style="color: green; list-style-type: none;">
+      <li class="white"><i>I don't know what he LACED them with, but I was TRIPPING all day!</i></li>
+    </ul>
+    <b>How did the Atlantic Ocean say goodbye to the Pacific Ocean?</b><br>
+    <ul id="joke2" style="color: green; list-style-type: none;">
+      <li class="white"><i>It WAVED!</i></li>
+    </ul>
+    <b>What's the best thing about living in Switzerland?</b>
+    <ul id="joke3" style="color: green; list-style-type: none;">
+      <li class="white"><i>I don't know, but the flag is a BIG PLUS!</i></li>
+    </ul>
 
+    <hr class="my-4">
+    <h2>It Beeg Yoshi</h2>
+    <form action="/terror">
+      <input type="submit" value="Attempt to Sneak Past Him" class="btn btn-outline-danger">
+    </form>
+    <img src="../static/BeegYoshi.png" />
+    
+    <hr class="my-4">
 
-      <form action = "/explore">
-        <input type = "submit" value = "Go Back To Explore" class="btn btn-outline-success btn-lg" >
-      </form>
+    <form action="/explore">
+      <input type="submit" value="Go Back To Explore" class="btn btn-outline-success btn-lg">
+    </form>
+    <br>
+    <form action="/homepage">
+      <input type="submit" value="Go To Homepage" class="btn btn-outline-secondary btn-lg">
+    </form>
+  </div>
 
-      <form action = "/homepage">
-        <input type = "submit" value = "Go To Homepage" class="btn btn-outline-secondary btn-lg">
-      </form>
+  <script src="../static/js/javascript.js"></script>
+  <!-- bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
 
-    </div>
-
-
-
-    <!--<script src="../static/js/javascript.js"></script>-->
-    <!-- bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
 </html>
